@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap" rel="stylesheet">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Calculadora</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<style type="text/css">
+	@media only screen and (max-width: 800px){
+	width:50%
+	font-size:10%
+}
+
+
+.cuerpo{
+	display: flex;
+	width: 500px;
+	height: 650px;
+	border: 1px solid;
+	background: lightgray;
+	flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+	column-gap: 40px;
+	positive: absolute;
+}
+
+.resultado {
+	width: 400px;
+	margin-top: 20px;
+	margin-left: 45px;
+	height: 50px;
+	background-color:black;
+	font-family: 'Roboto Mono',monospace;
+	color: #02e802;
+	font-size: 25px;
+}
+
+button{
+font-family: sans-serif;
+font-size: 20px;
+margin: 30px;
+width: 55px;
+height: 55px;
+border: none;
+background-color: #c2bcbc
+;
+}
+
+.numero{
+	background-color: white;
+}
+
+.igual{
+	background-color: yellow;
+}
+
+.reset{
+	background-color: orange;
+	width: 55px;
+	height: 15px;
+	margin-top: -15px;
+	margin-left: 30px;
+}
+</style>
+
+<body>
+
+<div class="cuerpo">	
+	<input type="number" name="" readonly class="resultado">
+	<button class="igual">=</button>
+	<button class="suma">+</button>
+	<button class="resta">-</button>
+	<button class="dividir">/</button>
+	<button class="multiplicar">*</button>
+</div>
+
+<button class="reset"></button>
+
+<script type="text/javascript">
+	// creación de botones de número
+for (let i = 1; i <= 10; i++) {
+	boton = document.querySelector('.cuerpo').appendChild(document.createElement('button'))
+	boton.classList.add('numero')
+	boton.setAttribute("id",'numero' +i)
+	boton.innerHTML = i	
+	if (i == 10) boton.innerHTML = 0 ;
+	
+}
+
+// tomar el dato de cada número 
+let numero1 = document.getElementById("numero1");
+let numero2 = document.getElementById("numero2");
+let numero3 = document.getElementById("numero3");
+let numero4 = document.getElementById("numero4");
+let numero5 = document.getElementById("numero5");
+let numero6 = document.getElementById("numero6");
+let numero7 = document.getElementById("numero7");
+let numero8 = document.getElementById("numero8");
+let numero9 = document.getElementById("numero9");
+let numero0 = document.getElementById("numero10");
+let multiplicar = document.querySelector('.multiplicar');
+let sumar = document.querySelector('.suma');
+let restar = document.querySelector('.resta');
+let dividir = document.querySelector('.dividir');
+let igual = document.querySelector('.igual');
+let resultado = document.querySelector('.resultado');
+let reset = document.querySelector('.reset')
+let primerNumero;
+let segundoNumero;
+let operacion;
+let res = 0;
+
+
+//Aparecer en pantalla
+
+
+function procesoNumero(){
+numero1.onclick =()=> resultado.value = resultado.value + 1;
+numero2.onclick =()=> resultado.value = resultado.value + 2;
+numero3.onclick =()=> resultado.value = resultado.value + 3;
+numero4.onclick =()=> resultado.value = resultado.value + 4;
+numero5.onclick =()=> resultado.value = resultado.value + 5;
+numero6.onclick =()=> resultado.value = resultado.value + 6;
+numero7.onclick =()=> resultado.value = resultado.value + 7;	
+numero8.onclick =()=> resultado.value = resultado.value + 8;
+numero9.onclick =()=> resultado.value = resultado.value + 9;
+numero0.onclick =()=> resultado.value = resultado.value + 0;
+sumar.onclick = function(){ 
+	primerNumero = resultado.value; 
+	operacion = '+';
+	limpiar();
+}
+restar.onclick = function(){ 
+	 primerNumero = resultado.value;
+	 operacion = '-'; 
+	 limpiar();
+	}
+dividir.onclick = function(){ 
+	primerNumero = resultado.value; 
+	operacion = '/'; 
+	limpiar()
+}
+multiplicar.onclick = function(){ 
+	primerNumero = resultado.value;
+ 	operacion = '*';
+  	limpiar();
+}
+igual.onclick = function(){segundoNumero = resultado.value ;
+ resolver()};
+
+reset.onclick = function(){
+	resetear();
+}
+};
+//Operaciones 
+function limpiar (){
+	resultado.value = '';
+};
+
+function resetear(){
+	resultado.value = '';
+	primerNumero = '0';
+	segundoNumero = '0';
+	operacion = '0';
+};
+
+function resolver(){
+
+
+	switch(operacion){
+		case"+":
+		res = parseFloat(primerNumero) + parseFloat(segundoNumero);
+		break;
+
+		case"-":
+		res = parseFloat(primerNumero) - parseFloat(segundoNumero);
+		break;
+
+		case"*":
+		res = parseFloat(primerNumero) * parseFloat(segundoNumero);
+		break;
+
+		case"/":
+		res = parseFloat(primerNumero) / parseFloat(segundoNumero);
+		break;
+	};
+	console.log(res)
+	resultado.value = res;
+};
+
+
+//Llamar a la función
+procesoNumero();
+
+</script>
+</body>
+</html>
